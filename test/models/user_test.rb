@@ -25,4 +25,9 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
+  test "email shouldn't be longer than 60 alphabets" do
+    @user.name = "t" * 61
+    assert_not @user.valid?
+  end
+
 end
