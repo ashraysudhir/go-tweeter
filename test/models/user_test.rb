@@ -20,4 +20,9 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
+  test "name shouldn't be longer than 30 alphabets" do
+    @user.name = "t" * 31
+    assert_not @user.valid?
+  end
+
 end
