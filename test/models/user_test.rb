@@ -46,4 +46,11 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test "email (case-insensitive) should be unique" do
+    user_two = @user.dup
+    user_two.email = @user.email.upcase
+    @user.save
+    assert_not user_two.valid?
+  end
+
 end
