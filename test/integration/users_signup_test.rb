@@ -14,7 +14,18 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_select 'div#display_errors'
     assert_select 'div.alert'
     assert_select 'div.alert-danger'
+  end
 
+  test "signup should succeed on valid information and redirect to profile" do
+    get signup_path
+
+    assert_difference 'User.count', 1 do
+      post users_path, params: { user: { name:  "test", email: "test@test.com", password: "test123", password_confirmation: "test123" } }
+    end
+
+    follow_redirect!
+    assert_template 'users/show'
+    assert_not flash.empty?
   end
 
 end
