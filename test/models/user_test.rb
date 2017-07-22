@@ -31,10 +31,18 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "correctly formatted emails should be accepted" do
-    valid_emails = %w[test@test.com T+E_S-T@T.E.ST.COM TE&ST@TesT.com]
+    valid_emails = %w[test@test.com T+E_S-T@T.E.ST.COM TE_ST@TesT.com]
     valid_emails.each do |address|
       @user.email = address
-      assert @user.valid?, "#{address.inspect} isn't valid"
+      assert @user.valid?, "#{address.inspect} should be valid"
+    end
+  end
+
+  test "incorrectly formatted emails should be rejected" do
+    invalid_emails = %w[test@te_st.com T+E_S-&T@T.E.ST TE&ST@TesT.com.TEST TEST.COM]
+    invalid_emails.each do |address|
+      @user.email = address
+      assert_not @user.valid?, "#{address.inspect} shouldn't be valid"
     end
   end
 
