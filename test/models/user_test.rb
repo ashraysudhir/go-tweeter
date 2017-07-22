@@ -60,4 +60,9 @@ class UserTest < ActiveSupport::TestCase
     assert_equal email_test.downcase, @user.reload.email
   end
 
+  test "passwords shouldn't be empty" do
+    @user.password = @user.password_confirmation =  "  "
+    assert_not @user.valid?
+  end
+
 end
