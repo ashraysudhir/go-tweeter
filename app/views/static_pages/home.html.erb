@@ -1,5 +1,18 @@
-<div class="center jumbotron">
-  <h1>Go-Tweeter</h1>
-  <p>This project developed by Ashray Sudhir, is a clone of Twitter and has basic functionalities of the same.</p>
-  <%= link_to "Sign Up!", signup_path, class: "btn btn-lg btn-primary" %>
-</div>
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="tweet_form">
+        <%= render 'shared/tweet_form' %>
+      </section>
+    </aside>
+  </div>
+<% else %>
+  <div class="center jumbotron">
+    <h1>Go-Tweeter</h1>
+    <p>This project developed by Ashray Sudhir, is a clone of Twitter and has basic functionalities of the same.</p>
+    <%= link_to "Sign Up!", signup_path, class: "btn btn-lg btn-primary" %>
+  </div>
+<% end %>
