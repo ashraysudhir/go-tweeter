@@ -11,4 +11,9 @@ class TweetTest < ActiveSupport::TestCase
     assert @tweet.valid?
   end
 
+  test "tweet should be associated with a user id" do
+    @tweet.user_id = nil
+    assert_not @tweet.valid?
+  end
+
 end
