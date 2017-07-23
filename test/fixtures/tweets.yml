@@ -1,15 +1,26 @@
 first:
   content: "First!"
   created_at: <%= 4.minutes.ago %>
+  user: test
 
 second:
   content: "Second!"
   created_at: <%= 3.minutes.ago %>
+  user: test
 
 third:
   content: "Third!"
   created_at: <%= 2.minutes.ago %>
+  user: test
 
 latest:
   content: "Latest!"
   created_at: <%= Time.zone.now %>
+  user: test
+
+<% 50.times do |n| %>
+tweet_<%= n %>:
+  content: <%= Faker::Lorem.sentence(5) %>
+  created_at: <%= 11.days.ago %>
+  user: test
+<% end %>
