@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+  before_action :login_check, only: [:edit, :update]
   def show
     @user= User.find(params[:id])
   end
@@ -36,6 +37,13 @@ class UsersController < ApplicationController
   private
   def user_fields
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def login_check
+    unless logged_in?
+      flash[:danger] = "Please log in to access this functionality!"
+      redirect_to login_url
+    end
   end
 
 end
