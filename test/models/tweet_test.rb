@@ -26,4 +26,8 @@ class TweetTest < ActiveSupport::TestCase
     assert_not @tweet.valid?
   end
 
+  test "tweets should be displayed in chronological order" do
+    assert_equal tweets(:latest), Tweet.first
+  end
+
 end
