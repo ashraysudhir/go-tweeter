@@ -6,7 +6,7 @@ first:
 second:
   content: "Second!"
   created_at: <%= 3.minutes.ago %>
-  user: test
+  user: test_another
 
 third:
   content: "Third!"
