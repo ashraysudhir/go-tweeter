@@ -19,6 +19,11 @@ class TweetTest < ActiveSupport::TestCase
   test "content shouldn't be blank" do
    @tweet.content = "  "
    assert_not @tweet.valid?
- end
+  end
+
+  test "content should not have more than 140 characters" do
+    @tweet.content = "t" * 141
+    assert_not @tweet.valid?
+  end
 
 end
