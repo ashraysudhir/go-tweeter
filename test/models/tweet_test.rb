@@ -4,7 +4,7 @@ class TweetTest < ActiveSupport::TestCase
 
   def setup
     @user = users(:test)
-    @tweet = Tweet.new(content: "Go-Tweet!", user_id: @user.id)
+    @tweet = @user.tweets.build(content: "Go-Tweet!")
   end
 
   test "tweet should be valid" do
