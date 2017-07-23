@@ -16,4 +16,9 @@ class TweetTest < ActiveSupport::TestCase
     assert_not @tweet.valid?
   end
 
+  test "content shouldn't be blank" do
+   @tweet.content = "  "
+   assert_not @tweet.valid?
+ end
+
 end
