@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :login_check, only: [:edit, :update]
-  before_action :user_check, only: [:edit]
+  before_action :user_check, only: [:edit, :update]
 
   def show
     @user= User.find(params[:id])

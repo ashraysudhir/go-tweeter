@@ -49,4 +49,11 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
+  test "update should be redirected when logged in as wrong user" do
+    login_as(@another_user)
+    patch user_path(@user), params: { user: { name: @user.name, email: @user.email } }
+    assert flash.empty?
+    assert_redirected_to root_url
+  end
+
 end
