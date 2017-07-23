@@ -4,9 +4,10 @@ class UsersEditTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:test)
+    @another_user = users(:test_another)
   end
 
-  test "Invalid edits should be unsuccessful" do
+  test "invalid edits should be unsuccessful" do
     login_as(@user)
     get edit_user_path(@user)
     assert_template 'users/edit'
@@ -15,7 +16,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_template 'users/edit'
   end
 
-  test "Valid edits should be successful" do
+  test "valid edits should be successful" do
     login_as(@user)
     get edit_user_path(@user)
     assert_template 'users/edit'
@@ -39,6 +40,13 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     patch user_path(@user), params: { user: { name: @user.name, email: @user.email } }
     assert_not flash.empty?
     assert_redirected_to login_url
+  end
+
+  test "edit should be redirected when logged in as wrong user" do
+    login_as(@another_user)
+    get edit_user_path(@user)
+    assert flash.empty?
+    assert_redirected_to root_url
   end
 
 end

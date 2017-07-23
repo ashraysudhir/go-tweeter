@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
   before_action :login_check, only: [:edit, :update]
+  before_action :user_check, only: [:edit]
+
   def show
     @user= User.find(params[:id])
   end
@@ -44,6 +46,11 @@ class UsersController < ApplicationController
       flash[:danger] = "Please log in to access this functionality!"
       redirect_to login_url
     end
+  end
+
+  def user_check
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless @user == current_user
   end
 
 end
