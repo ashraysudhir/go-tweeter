@@ -13,4 +13,11 @@ class TweetsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
   end
 
+  test "tweet destroying should be redirected when not logged in" do
+    assert_no_difference 'Tweet.count' do
+      delete tweet_path(@tweet)
+    end
+    assert_redirected_to login_url
+  end
+
 end
