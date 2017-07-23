@@ -8,6 +8,7 @@ class TweetsController < ApplicationController
       flash[:success] = "Tweeted Successfully!"
       redirect_to root_url
     else
+      @feed_tweets = []
       render 'static_pages/home'
     end
   end

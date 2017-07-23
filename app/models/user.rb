@@ -17,4 +17,8 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
 
+  def feed
+    Tweet.where("user_id = ?", id)
+  end
+
 end
