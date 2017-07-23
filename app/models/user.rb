@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 
-  has_many :tweets
-  
+  has_many :tweets, dependent: :destroy
+
   EMAIL_FORMAT = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
   before_save { self.email = email.downcase }

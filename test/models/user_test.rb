@@ -70,4 +70,12 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
+  test "tweets should be destroyed when user is" do
+    @user.save
+    @user.tweets.create!(content: "Test!")
+    assert_difference 'Tweet.count', -1 do
+      @user.destroy
+    end
+  end
+
 end
