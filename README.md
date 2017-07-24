@@ -18,3 +18,11 @@ If the test suite passes, you'll be ready to run the app in a local server:
 ```
 $ rails server
 ```
+To deploy it on Heroku:
+'''
+$ git push heroku
+'''
+To migrate database to Heroku:
+'''
+$ heroku run rails db:migrate
+'''
